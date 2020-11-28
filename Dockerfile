@@ -1,9 +1,11 @@
 FROM ubuntu:20.04
 
 RUN apt update \
-    && apt install -y ca-certificates openssh-client \
-    wget curl iptables supervisor \
-    && rm -rf /var/lib/apt/list/*
+	&& apt install -y \
+		ca-certificates openssh-client wget curl iptables supervisor \
+		build-essential curl lsb-core software-properties-common \
+		apt-transport-https ca-certificates \
+	&& rm -rf /var/lib/apt/list/*
 
 ENV DOCKER_CHANNEL=stable \
 	DOCKER_VERSION=19.03.11 \
@@ -15,13 +17,13 @@ RUN set -eux; \
 	\
 	arch="$(uname --m)"; \
 	case "$arch" in \
-        # amd64
+		# amd64
 		x86_64) dockerArch='x86_64' ;; \
-        # arm32v6
+		# arm32v6
 		armhf) dockerArch='armel' ;; \
-        # arm32v7
+		# arm32v7
 		armv7) dockerArch='armhf' ;; \
-        # arm64v8
+		# arm64v8
 		aarch64) dockerArch='aarch64' ;; \
 		*) echo >&2 "error: unsupported architecture ($arch)"; exit 1 ;;\
 	esac; \
