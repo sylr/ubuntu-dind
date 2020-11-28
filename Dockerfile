@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 RUN apt update \
-	&& apt install -y \
+	&& DEBIAN_FRONTEND=noninteractive apt install -y \
 		ca-certificates openssh-client wget curl iptables supervisor \
 		build-essential curl lsb-core software-properties-common \
 		apt-transport-https ca-certificates \
