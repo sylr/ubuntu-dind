@@ -4,7 +4,7 @@ RUN apt update \
 	&& DEBIAN_FRONTEND=noninteractive apt install -y \
 		ca-certificates openssh-client wget curl iptables supervisor \
 		build-essential curl lsb-core software-properties-common \
-		apt-transport-https ca-certificates \
+		apt-transport-https ca-certificates git jq \
 	&& rm -rf /var/lib/apt/list/*
 
 ENV DOCKER_CHANNEL=stable \
